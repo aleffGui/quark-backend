@@ -1,4 +1,4 @@
-package com.guilherme.quarkapi.domain;
+package com.guilherme.quarkapi.models;
 
 import java.util.HashSet;
 import java.util.Set;
