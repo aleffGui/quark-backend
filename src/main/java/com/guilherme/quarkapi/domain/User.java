@@ -13,8 +13,8 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.JoinColumn;
 
-@Table(name = "user")
-@Entity(name = "user")
+@Table(name = "users")
+@Entity
 public class User {
 
 	@Id

@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Table(name = "task")
@@ -23,19 +25,21 @@ public class Task {
 	
 	private String description;
 	
-	private String responsible;
-	
 	private TaskPriority priority;
 	
 	private LocalDateTime deadline;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 
-	public Task(Long id, String title, String description, String responsible, TaskPriority priority,
+	public Task(Long id, String title, String description, User user, TaskPriority priority,
 			LocalDateTime deadline) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.responsible = responsible;
+		this.user = user;
 		this.priority = priority;
 		this.deadline = deadline;
 	}
@@ -60,12 +64,12 @@ public class Task {
 		this.description = description;
 	}
 
-	public String getResponsible() {
-		return responsible;
+	public User getUser() {
+		return user;
 	}
 
-	public void setResponsible(String responsible) {
-		this.responsible = responsible;
+	public void setResponsible(User user) {
+		this.user = user;
 	}
 
 	public TaskPriority getPriority() {
