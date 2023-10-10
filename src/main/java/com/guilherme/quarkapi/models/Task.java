@@ -29,12 +29,14 @@ public class Task {
 	
 	private LocalDateTime deadline;
 	
+	private Boolean status;
+	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 
 	public Task(Long id, String title, String description, User user, TaskPriority priority,
-			LocalDateTime deadline) {
+			LocalDateTime deadline, Boolean status) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -42,6 +44,7 @@ public class Task {
 		this.user = user;
 		this.priority = priority;
 		this.deadline = deadline;
+		this.setStatus(status);
 	}
 
 	public Long getId() {
@@ -92,7 +95,15 @@ public class Task {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
+	
+	public Boolean getStatus() {
+		return status;
+	}
 
+	public void setStatus(Boolean status) {
+		this.status = status;
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
