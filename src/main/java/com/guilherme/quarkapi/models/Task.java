@@ -44,7 +44,7 @@ public class Task {
 		this.user = user;
 		this.priority = priority;
 		this.deadline = deadline;
-		this.setStatus(status);
+		this.status = status;
 	}
 
 	public Long getId() {
