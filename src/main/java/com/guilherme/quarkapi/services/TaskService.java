@@ -10,16 +10,21 @@ import com.guilherme.quarkapi.repositories.TaskRepository;
 @Service
 public class TaskService {
 	
-	private TaskRepository taskRespository;
+	private TaskRepository taskRepository;
 	private UserService userService;
 	
 	private TaskService(TaskRepository taskRepository, UserService userService) {
-		this.taskRespository = taskRepository;
+		this.taskRepository = taskRepository;
 		this.userService = userService;
 	}
 	
 	public Task insert(Task task) {
-		return taskRespository.save(task);
+		return taskRepository.save(task);
+	}
+	
+	public Task findById(Long id) {
+		Task task = this.taskRepository.findById(id).orElseThrow(() -> new RuntimeException("Tarefa não encontrada."));
+		return task;
 	}
 	
 	public Task fromDTO(NewTaskDTO taskDto) {
