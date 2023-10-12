@@ -2,7 +2,7 @@ package com.guilherme.quarkapi.dtos;
 
 import java.util.Set;
 
-public class UserRegisterDTO {
+public class NewUserDTO {
 	
 	private String firstName;
 	
@@ -14,7 +14,7 @@ public class UserRegisterDTO {
 	
 	private Set<String> roles;
 	
-	public UserRegisterDTO() {
+	public NewUserDTO() {
 		
 	}
 

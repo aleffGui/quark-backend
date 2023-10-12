@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import com.guilherme.quarkapi.enums.TaskPriority;
 
-public class TaskRegisterDTO {
+public class NewTaskDTO {
 	
 	private String title;
 	
@@ -16,7 +16,7 @@ public class TaskRegisterDTO {
 	
 	private Long userId;
 	
-	public TaskRegisterDTO() {
+	public NewTaskDTO() {
 		
 	}
 

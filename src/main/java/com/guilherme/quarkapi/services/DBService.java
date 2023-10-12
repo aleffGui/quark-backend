@@ -19,13 +19,13 @@ import jakarta.annotation.PostConstruct;
 public class DBService {
 
 	@Autowired
-	RoleRepository roleRepository;
+	private RoleRepository roleRepository;
 	
 	@Autowired
-	TaskRepository taskRepository;
+	private TaskRepository taskRepository;
 	
 	@Autowired
-	UserRepository userRepository;
+	private UserRepository userRepository;
 	
 	
 	@PostConstruct

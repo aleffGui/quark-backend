@@ -16,32 +16,31 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+@Entity
 @Table(name = "task")
-@Entity(name = "task")
 public class Task {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	private String title;
-	
+
 	private String description;
-	
+
 	@Enumerated(EnumType.STRING)
 	private TaskPriority priority;
-	
+
 	private LocalDateTime deadline;
-	
+
 	private Boolean status;
-	
+
 	@ManyToOne
 	@JsonIgnore
 	@JoinColumn(name = "user_id")
 	private User user;
 
-	public Task(Long id, String title, String description, User user, TaskPriority priority,
-			LocalDateTime deadline, Boolean status) {
+	public Task(Long id, String title, String description, User user, TaskPriority priority, LocalDateTime deadline, Boolean status) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -51,7 +50,7 @@ public class Task {
 		this.deadline = deadline;
 		this.status = status;
 	}
-	
+
 	public Task(String title, String description, TaskPriority priority, LocalDateTime deadline, Boolean status) {
 		super();
 		this.title = title;
@@ -60,13 +59,15 @@ public class Task {
 		this.deadline = deadline;
 		this.status = status;
 	}
+
 	public Task() {
-		
+
 	}
+	
 	public Long getId() {
 		return id;
 	}
-	
+
 	public String getTitle() {
 		return title;
 	}
@@ -111,7 +112,7 @@ public class Task {
 	public int hashCode() {
 		return Objects.hash(id);
 	}
-	
+
 	public Boolean getStatus() {
 		return status;
 	}
@@ -119,7 +120,7 @@ public class Task {
 	public void setStatus(Boolean status) {
 		this.status = status;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
