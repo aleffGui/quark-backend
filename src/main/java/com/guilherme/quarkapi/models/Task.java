@@ -4,10 +4,10 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 import com.guilherme.quarkapi.enums.TaskPriority;
+import com.guilherme.quarkapi.enums.converters.TaskPriorityConverter;
 
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,7 +27,7 @@ public class Task {
 
 	private String description;
 
-	@Enumerated(EnumType.STRING)
+	@Convert(converter = TaskPriorityConverter.class)
 	private TaskPriority priority;
 
 	private LocalDateTime deadline;

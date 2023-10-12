@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,7 +41,7 @@ public class TaskController {
 		Page<TaskDTO> tasks = taskService.findAll(pageable);
 		return ResponseEntity.status(HttpStatus.OK).body(tasks);
 	}
-	
+
 	@PostMapping
 	public ResponseEntity<Void> insert(@Valid @RequestBody NewTaskDTO taskDto) {
 		Task task = taskService.fromDTO(taskDto);
@@ -48,5 +49,12 @@ public class TaskController {
 		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(task.getId()).toUri();
 		return ResponseEntity.created(uri).build();
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<TaskDTO> update(@PathVariable Long id, @RequestBody NewTaskDTO newTask) {
+		Task task = taskService.fromDTO(newTask);
+		TaskDTO taskDto = taskService.update(id, task);
+		return ResponseEntity.status(HttpStatus.OK).body(taskDto);
 	}
 }
