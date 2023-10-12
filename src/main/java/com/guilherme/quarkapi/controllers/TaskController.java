@@ -1,5 +1,7 @@
 package com.guilherme.quarkapi.controllers;
 
+import java.net.URI;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.guilherme.quarkapi.dtos.NewTaskDTO;
 import com.guilherme.quarkapi.models.Task;
@@ -28,10 +31,13 @@ public class TaskController {
 		Task task = taskService.findById(id);
 		return ResponseEntity.status(HttpStatus.OK).body(task);
 	}
+	
 	@PostMapping
-	public ResponseEntity<Task> insert(@Valid @RequestBody NewTaskDTO taskDto) {
+	public ResponseEntity<Void> insert(@Valid @RequestBody NewTaskDTO taskDto) {
 		Task task = taskService.fromDTO(taskDto);
 		task = taskService.insert(task);
-		return ResponseEntity.status(HttpStatus.CREATED).body(task);
+		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(task.getId()).toUri();
+		return ResponseEntity.created(uri).build();
 	}
 }

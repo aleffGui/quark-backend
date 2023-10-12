@@ -3,7 +3,6 @@ package com.guilherme.quarkapi.models;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.guilherme.quarkapi.enums.TaskPriority;
 
 import jakarta.persistence.Entity;
@@ -36,7 +35,6 @@ public class Task {
 	private Boolean status;
 
 	@ManyToOne
-	@JsonIgnore
 	@JoinColumn(name = "user_id")
 	private User user;
 
