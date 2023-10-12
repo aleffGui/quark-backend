@@ -3,9 +3,12 @@ package com.guilherme.quarkapi.models;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.guilherme.quarkapi.enums.TaskPriority;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,6 +28,7 @@ public class Task {
 	
 	private String description;
 	
+	@Enumerated(EnumType.STRING)
 	private TaskPriority priority;
 	
 	private LocalDateTime deadline;
@@ -32,6 +36,7 @@ public class Task {
 	private Boolean status;
 	
 	@ManyToOne
+	@JsonIgnore
 	@JoinColumn(name = "user_id")
 	private User user;
 
@@ -46,7 +51,18 @@ public class Task {
 		this.deadline = deadline;
 		this.status = status;
 	}
-
+	
+	public Task(String title, String description, TaskPriority priority, LocalDateTime deadline, Boolean status) {
+		super();
+		this.title = title;
+		this.description = description;
+		this.priority = priority;
+		this.deadline = deadline;
+		this.status = status;
+	}
+	public Task() {
+		
+	}
 	public Long getId() {
 		return id;
 	}
