@@ -3,6 +3,8 @@ package com.guilherme.quarkapi.controllers;
 import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.guilherme.quarkapi.dtos.NewTaskDTO;
+import com.guilherme.quarkapi.dtos.TaskDTO;
 import com.guilherme.quarkapi.models.Task;
 import com.guilherme.quarkapi.services.TaskService;
 
@@ -30,6 +33,12 @@ public class TaskController {
 	public ResponseEntity<Task> findById(@PathVariable Long id) {
 		Task task = taskService.findById(id);
 		return ResponseEntity.status(HttpStatus.OK).body(task);
+	}
+	
+	@GetMapping
+	public ResponseEntity<Page<TaskDTO>> findAll(Pageable pageable) {
+		Page<TaskDTO> tasks = taskService.findAll(pageable);
+		return ResponseEntity.status(HttpStatus.OK).body(tasks);
 	}
 	
 	@PostMapping
