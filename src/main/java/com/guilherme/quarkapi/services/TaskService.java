@@ -32,6 +32,10 @@ public class TaskService {
 		task = taskRepository.save(task);
 		return toDTO(task);
 	}
+	public void delete(Long id) {
+		Task task = findById(id);
+		taskRepository.delete(task);
+	}
 	private void set(Task task, Task newTask) {
 		
 		if(newTask.getUser() != null) {
