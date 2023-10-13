@@ -70,4 +70,9 @@ public class TaskService {
 		
 		return task;
 	}
+	
+	public void markTaskAsComplete(Long id) {
+		Task task = findById(id);
+		taskRepository.markAsComplete(task.getId());
+	}
 }
