@@ -2,15 +2,13 @@ package com.guilherme.quarkapi.dtos;
 
 import java.time.LocalDateTime;
 
-import com.guilherme.quarkapi.enums.TaskPriority;
-
 public class TaskDTO {
 
 	private Long id;
 	private String title;
 	private String description;
 	private Boolean status;
-	private TaskPriority priority;
+	private String priority;
 	private LocalDateTime deadline;
 	private UserDTO responsible;
 	
@@ -18,7 +16,7 @@ public class TaskDTO {
 		
 	}
 
-	public TaskDTO(Long id, String title, String description, Boolean status, TaskPriority priority, LocalDateTime deadline, UserDTO responsible) {
+	public TaskDTO(Long id, String title, String description, Boolean status, String priority, LocalDateTime deadline, UserDTO responsible) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -69,11 +67,11 @@ public class TaskDTO {
 		this.responsible = responsible;
 	}
 
-	public TaskPriority getPriority() {
+	public String getPriority() {
 		return priority;
 	}
 
-	public void setPriority(TaskPriority priority) {
+	public void setPriority(String priority) {
 		this.priority = priority;
 	}
 

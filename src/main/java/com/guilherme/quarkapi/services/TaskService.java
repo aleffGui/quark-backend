@@ -67,7 +67,7 @@ public class TaskService {
 	
 	private TaskDTO toDTO(Task task) {
 		UserDTO userDto = new UserDTO(task.getUser().getId(), task.getUser().getFirstName(), task.getUser().getLastName());
-	    return new TaskDTO(task.getId(), task.getTitle(), task.getDescription(), task.getStatus(), task.getPriority(), task.getDeadline(), userDto);
+	    return new TaskDTO(task.getId(), task.getTitle(), task.getDescription(), task.getStatus(), task.getPriority().getValue(), task.getDeadline(), userDto);
 	}
 
 	public Task fromDTO(NewTaskDTO taskDto) {
