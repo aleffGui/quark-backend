@@ -10,16 +10,19 @@ import com.guilherme.quarkapi.dtos.UserDTO;
 import com.guilherme.quarkapi.models.Task;
 import com.guilherme.quarkapi.models.User;
 import com.guilherme.quarkapi.repositories.TaskRepository;
+import com.guilherme.quarkapi.repositories.UserRepository;
+import com.guilherme.quarkapi.services.exceptions.ObjectNotFoundException;
+import com.guilherme.quarkapi.services.exceptions.TaskCompletedException;
 
 @Service
 public class TaskService {
 	
 	private TaskRepository taskRepository;
-	private UserService userService;
+	private UserRepository userRepository;
 	
-	private TaskService(TaskRepository taskRepository, UserService userService) {
+	private TaskService(TaskRepository taskRepository, UserRepository userRepository) {
 		this.taskRepository = taskRepository;
-		this.userService = userService;
+		this.userRepository = userRepository;
 	}
 	
 	public Task insert(Task task) {
@@ -39,7 +42,7 @@ public class TaskService {
 	private void set(Task task, Task newTask) {
 		
 		if(newTask.getUser() != null) {
-			User user = userService.findById(newTask.getUser().getId());			
+			User user = userRepository.findById(newTask.getUser().getId()).orElseThrow(() -> new ObjectNotFoundException("Responsável não encontrado."));;			
 			task.setResponsible(user);
 		}
 		task.setTitle(newTask.getTitle());
@@ -48,7 +51,7 @@ public class TaskService {
 		task.setDeadline(newTask.getDeadline());
 	}
 	public Task findById(Long id) {
-		Task task = this.taskRepository.findById(id).orElseThrow(() -> new RuntimeException("Tarefa não encontrada."));
+		Task task = this.taskRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Tarefa não encontrada! Id: " + id));
 		return task;
 	}
 	
@@ -70,7 +73,7 @@ public class TaskService {
 	public Task fromDTO(NewTaskDTO taskDto) {
 		Task task = new Task(taskDto.getTitle(), taskDto.getDescription(), taskDto.getPriority(), taskDto.getDeadline(), false);
 		
-		User userObj = userService.findById(taskDto.getUserId());
+		User userObj = userRepository.findById(taskDto.getUserId()).orElseThrow(() -> new ObjectNotFoundException("Responsável não encontrado."));
 		task.setResponsible(userObj);
 		
 		return task;
@@ -79,7 +82,7 @@ public class TaskService {
 	public void markTaskAsComplete(Long id) throws Exception {
 		Task task = findById(id);
 		if(task.getStatus()) {
-			throw new Exception("Tarefa já consta como concluída.");
+			throw new TaskCompletedException("Tarefa com o Id: " + id + " já consta como concluída.");
 		}
 		taskRepository.markAsComplete(task.getId());
 	}

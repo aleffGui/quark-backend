@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.guilherme.quarkapi.models.User;
 import com.guilherme.quarkapi.repositories.UserRepository;
+import com.guilherme.quarkapi.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class UserService {
@@ -13,7 +14,7 @@ public class UserService {
 	private UserRepository userRepository;
 	
 	public User findById(Long id) {
-		User user = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuário não encontrado."));
+		User user = userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Usuário não encontrado."));
 		return user;
 	}
 }
