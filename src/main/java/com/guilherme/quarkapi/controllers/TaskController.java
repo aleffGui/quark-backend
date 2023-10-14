@@ -33,9 +33,9 @@ public class TaskController {
 	TaskService taskService;
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Task> findById(@PathVariable Long id) {
-		Task task = taskService.findById(id);
-		return ResponseEntity.status(HttpStatus.OK).body(task);
+	public ResponseEntity<TaskDTO> findById(@PathVariable Long id) {
+		TaskDTO taskDto = taskService.findByIdToDto(id);
+		return ResponseEntity.status(HttpStatus.OK).body(taskDto);
 	}
 	
 	@GetMapping
@@ -61,7 +61,7 @@ public class TaskController {
 	}
 	
 	@PatchMapping("/{id}/complete")
-	public ResponseEntity<Void> markTaskAsComplete(@PathVariable Long id) {
+	public ResponseEntity<Void> markTaskAsComplete(@PathVariable Long id) throws Exception {
 		taskService.markTaskAsComplete(id);
 		return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
 	}

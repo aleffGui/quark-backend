@@ -52,6 +52,11 @@ public class TaskService {
 		return task;
 	}
 	
+	public TaskDTO findByIdToDto(Long id) {
+		Task task = findById(id);
+		return toDTO(task);
+	}
+	
 	public Page<TaskDTO> findAll(Pageable pageable) {
 	    Page<Task> tasks = this.taskRepository.findAll(pageable);  
 	    return tasks.map(task -> toDTO(task));
@@ -71,8 +76,11 @@ public class TaskService {
 		return task;
 	}
 	
-	public void markTaskAsComplete(Long id) {
+	public void markTaskAsComplete(Long id) throws Exception {
 		Task task = findById(id);
+		if(task.getStatus()) {
+			throw new Exception("Tarefa já consta como concluída.");
+		}
 		taskRepository.markAsComplete(task.getId());
 	}
 }
