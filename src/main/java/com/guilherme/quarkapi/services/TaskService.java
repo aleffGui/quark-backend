@@ -41,8 +41,8 @@ public class TaskService {
 	}
 	private void set(Task task, Task newTask) {
 		
-		if(newTask.getUser() != null) {
-			User user = userRepository.findById(newTask.getUser().getId()).orElseThrow(() -> new ObjectNotFoundException("Responsável não encontrado."));;			
+		if(newTask.getResponsible() != null) {
+			User user = userRepository.findById(newTask.getResponsible().getId()).orElseThrow(() -> new ObjectNotFoundException("Responsável não encontrado."));;			
 			task.setResponsible(user);
 		}
 		task.setTitle(newTask.getTitle());
@@ -66,7 +66,7 @@ public class TaskService {
 	}
 	
 	private TaskDTO toDTO(Task task) {
-		UserDTO userDto = new UserDTO(task.getUser().getId(), task.getUser().getFirstName(), task.getUser().getLastName());
+		UserDTO userDto = new UserDTO(task.getResponsible().getId(), task.getResponsible().getFirstName(), task.getResponsible().getLastName());
 	    return new TaskDTO(task.getId(), task.getTitle(), task.getDescription(), task.getStatus(), task.getPriority().getValue(), task.getDeadline(), userDto);
 	}
 
