@@ -2,10 +2,12 @@ package com.guilherme.quarkapi.services;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import com.guilherme.quarkapi.dtos.NewTaskDTO;
 import com.guilherme.quarkapi.dtos.TaskDTO;
+import com.guilherme.quarkapi.dtos.TaskFilterDTO;
 import com.guilherme.quarkapi.dtos.UserDTO;
 import com.guilherme.quarkapi.models.Task;
 import com.guilherme.quarkapi.models.User;
@@ -13,6 +15,7 @@ import com.guilherme.quarkapi.repositories.TaskRepository;
 import com.guilherme.quarkapi.repositories.UserRepository;
 import com.guilherme.quarkapi.services.exceptions.ObjectNotFoundException;
 import com.guilherme.quarkapi.services.exceptions.TaskCompletedException;
+import com.guilherme.quarkapi.specifications.TaskSpecifications;
 
 @Service
 public class TaskService {
@@ -41,9 +44,9 @@ public class TaskService {
 	}
 	private void set(Task task, Task newTask) {
 		
-		if(newTask.getResponsible() != null) {
-			User user = userRepository.findById(newTask.getResponsible().getId()).orElseThrow(() -> new ObjectNotFoundException("Responsável não encontrado."));;			
-			task.setResponsible(user);
+		if(newTask.getUser() != null) {
+			User user = userRepository.findById(newTask.getUser().getId()).orElseThrow(() -> new ObjectNotFoundException("Responsável não encontrado."));;			
+			task.setUser(user);
 		}
 		task.setTitle(newTask.getTitle());
 		task.setDescription(newTask.getDescription());
@@ -60,13 +63,14 @@ public class TaskService {
 		return toDTO(task);
 	}
 	
-	public Page<TaskDTO> findAll(Pageable pageable) {
-	    Page<Task> tasks = this.taskRepository.findAll(pageable);  
-	    return tasks.map(task -> toDTO(task));
-	}
+    public Page<TaskDTO> findAll(Pageable pageable, TaskFilterDTO taskFilter) {
+        Specification<Task> spec = TaskSpecifications.withFilters(taskFilter);
+        Page<Task> tasks = taskRepository.findAll(spec, pageable);
+        return tasks.map(task -> toDTO(task));
+    }
 	
 	private TaskDTO toDTO(Task task) {
-		UserDTO userDto = new UserDTO(task.getResponsible().getId(), task.getResponsible().getFirstName(), task.getResponsible().getLastName());
+		UserDTO userDto = new UserDTO(task.getUser().getId(), task.getUser().getFirstName(), task.getUser().getLastName());
 	    return new TaskDTO(task.getId(), task.getTitle(), task.getDescription(), task.getStatus(), task.getPriority(), task.getDeadline(), userDto);
 	}
 
@@ -74,7 +78,7 @@ public class TaskService {
 		Task task = new Task(taskDto.getTitle(), taskDto.getDescription(), taskDto.getPriority(), taskDto.getDeadline(), false);
 		
 		User userObj = userRepository.findById(taskDto.getUserId()).orElseThrow(() -> new ObjectNotFoundException("Responsável não encontrado."));
-		task.setResponsible(userObj);
+		task.setUser(userObj);
 		
 		return task;
 	}

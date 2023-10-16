@@ -37,10 +37,10 @@ public class DataSeeder implements CommandLineRunner {
     	       
     	       if(taskRepository.count() == 0) {
     	    	   Task task1 = new Task("Ministrar Curso de Angular", "ensinar os principais conceitos do Angular.", TaskPriority.HIGH, LocalDateTime.now(), false);
-    	    	   task1.setResponsible(adminUser);
+    	    	   task1.setUser(adminUser);
     	    	   
     	    	   Task task2 = new Task("Aprender Angular", "aprender os principais conceitos de Angular.", TaskPriority.MEDIUM, LocalDateTime.now().plusDays(1), false);
-    	    	   task2.setResponsible(regularUser);
+    	    	   task2.setUser(regularUser);
     	    	   
     	    	   taskRepository.save(task1);
     	    	   taskRepository.save(task2);

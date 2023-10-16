@@ -16,11 +16,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.guilherme.quarkapi.dtos.NewTaskDTO;
 import com.guilherme.quarkapi.dtos.TaskDTO;
+import com.guilherme.quarkapi.dtos.TaskFilterDTO;
+import com.guilherme.quarkapi.enums.TaskPriority;
 import com.guilherme.quarkapi.models.Task;
 import com.guilherme.quarkapi.services.TaskService;
 
@@ -40,11 +43,20 @@ public class TaskController {
 		return ResponseEntity.status(HttpStatus.OK).body(taskDto);
 	}
 	
-	@GetMapping
-	public ResponseEntity<Page<TaskDTO>> findAll(Pageable pageable) {
-		Page<TaskDTO> tasks = taskService.findAll(pageable);
-		return ResponseEntity.status(HttpStatus.OK).body(tasks);
-	}
+    @GetMapping
+    public ResponseEntity<Page<TaskDTO>> findAll(
+            Pageable pageable,
+            @RequestParam(value = "id", required = false) Long id,
+            @RequestParam(value = "titleOrDescription", required = false) String titleOrDescription,
+            @RequestParam(value = "userId", required = false) Long userId,
+            @RequestParam(value = "priority", required = false) TaskPriority priority,
+            @RequestParam(value = "status", required = false) Boolean status) {
+        
+    	TaskFilterDTO filter = new TaskFilterDTO(id, titleOrDescription, userId, priority, status);
+  
+        Page<TaskDTO> tasks = taskService.findAll(pageable, filter);
+        return ResponseEntity.status(HttpStatus.OK).body(tasks);
+    }
 
 	@PostMapping
 	public ResponseEntity<Void> insert(@Valid @RequestBody NewTaskDTO taskDto) {

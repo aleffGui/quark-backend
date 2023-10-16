@@ -12,13 +12,13 @@ public class TaskDTO {
 	private Boolean status;
 	private TaskPriority priority;
 	private LocalDateTime deadline;
-	private UserDTO responsible;
+	private UserDTO user;
 	
 	public TaskDTO() {
 		
 	}
 
-	public TaskDTO(Long id, String title, String description, Boolean status, TaskPriority priority, LocalDateTime deadline, UserDTO responsible) {
+	public TaskDTO(Long id, String title, String description, Boolean status, TaskPriority priority, LocalDateTime deadline, UserDTO user) {
 		super();
 		this.id = id;
 		this.title = title;
@@ -26,7 +26,7 @@ public class TaskDTO {
 		this.status = status;
 		this.priority = priority;
 		this.deadline = deadline;
-		this.responsible = responsible;
+		this.user = user;
 	}
 
 	public Long getId() {
@@ -61,12 +61,12 @@ public class TaskDTO {
 		this.status = status;
 	}
 
-	public UserDTO getResponsible() {
-		return responsible;
+	public UserDTO getUser() {
+		return user;
 	}
 
-	public void setResponsible(UserDTO responsible) {
-		this.responsible = responsible;
+	public void setUser(UserDTO user) {
+		this.user = user;
 	}
 
 	public TaskPriority getPriority() {

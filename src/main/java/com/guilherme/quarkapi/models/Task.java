@@ -35,15 +35,15 @@ public class Task {
 	private Boolean status;
 
 	@ManyToOne
-	@JoinColumn(name = "user_id")
-	private User responsible;
+	@JoinColumn(name = "userId")
+	private User user;
 
-	public Task(Long id, String title, String description, User responsible, TaskPriority priority, LocalDateTime deadline, Boolean status) {
+	public Task(Long id, String title, String description, User user, TaskPriority priority, LocalDateTime deadline, Boolean status) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.description = description;
-		this.responsible = responsible;
+		this.user = user;
 		this.priority = priority;
 		this.deadline = deadline;
 		this.status = status;
@@ -82,12 +82,12 @@ public class Task {
 		this.description = description;
 	}
 
-	public User getResponsible() {
-		return responsible;
+	public User getUser() {
+		return user;
 	}
 
-	public void setResponsible(User responsible) {
-		this.responsible = responsible;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public TaskPriority getPriority() {
