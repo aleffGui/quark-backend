@@ -29,7 +29,7 @@ public class SecurityConfig {
 						.requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
 						.requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
 						.requestMatchers(HttpMethod.POST, "/users").hasRole("ADMIN")
-						.anyRequest().permitAll()
+						.anyRequest().permitAll() // trocar permitAll para authenticated para testar o token nas rotas
 				)
 				.addFilterBefore(securityFilterConfig, UsernamePasswordAuthenticationFilter.class)
 				.build();			
