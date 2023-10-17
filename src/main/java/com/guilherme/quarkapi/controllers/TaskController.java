@@ -4,7 +4,6 @@ import java.net.URI;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -45,7 +44,7 @@ public class TaskController {
 	
     @GetMapping
     public ResponseEntity<Page<TaskDTO>> findAll(
-            Pageable pageable,
+    		@RequestParam(value = "page", required = false, defaultValue = "0") int page,
             @RequestParam(value = "id", required = false) Long id,
             @RequestParam(value = "titleOrDescription", required = false) String titleOrDescription,
             @RequestParam(value = "userId", required = false) Long userId,
@@ -53,8 +52,8 @@ public class TaskController {
             @RequestParam(value = "status", required = false) Boolean status) {
         
     	TaskFilterDTO filter = new TaskFilterDTO(id, titleOrDescription, userId, priority, status);
-  
-        Page<TaskDTO> tasks = taskService.findAll(pageable, filter);
+
+        Page<TaskDTO> tasks = taskService.findAll(filter, page);
         return ResponseEntity.status(HttpStatus.OK).body(tasks);
     }
 

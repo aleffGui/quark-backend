@@ -1,7 +1,9 @@
 package com.guilherme.quarkapi.services;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -63,7 +65,8 @@ public class TaskService {
 		return toDTO(task);
 	}
 	
-    public Page<TaskDTO> findAll(Pageable pageable, TaskFilterDTO taskFilter) {
+    public Page<TaskDTO> findAll(TaskFilterDTO taskFilter, int page) {
+    	Pageable pageable = PageRequest.of(page, 20, Sort.by(Sort.Order.desc("id")));
         Specification<Task> spec = TaskSpecifications.withFilters(taskFilter);
         Page<Task> tasks = taskRepository.findAll(spec, pageable);
         return tasks.map(task -> toDTO(task));

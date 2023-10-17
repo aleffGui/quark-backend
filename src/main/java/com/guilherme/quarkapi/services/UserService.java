@@ -6,9 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.guilherme.quarkapi.dtos.TaskDTO;
 import com.guilherme.quarkapi.dtos.UserDTO;
-import com.guilherme.quarkapi.models.Task;
 import com.guilherme.quarkapi.models.User;
 import com.guilherme.quarkapi.repositories.UserRepository;
 import com.guilherme.quarkapi.services.exceptions.ObjectNotFoundException;

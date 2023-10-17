@@ -19,7 +19,7 @@ public class TaskSpecifications {
             }
 
             if (filter.getTitleOrDescription() != null && !filter.getTitleOrDescription().isEmpty()) {
-                String filterText = filter.getTitleOrDescription().toLowerCase(); // Converter para minúsculas
+                String filterText = filter.getTitleOrDescription().toLowerCase();
                 Expression<String> titleExpression = criteriaBuilder.lower(root.get("title"));
                 Expression<String> descriptionExpression = criteriaBuilder.lower(root.get("description"));
 
