@@ -20,19 +20,22 @@ public class TokenService {
 	private String secret;
 	
 	public String generateToken(User user) {
-		try {
-			Algorithm algorithm = Algorithm.HMAC256(secret);
-			String token = JWT.create()
-					.withIssuer("quark-api")
-					.withSubject(user.getUsername())
-					.withExpiresAt(generateExpirationDate())
-					.sign(algorithm);
-			
-			return token;
-		} catch(JWTCreationException exception) {
-			throw new RuntimeException("Error while generating token", exception);
-		}
+	    try {
+	        Algorithm algorithm = Algorithm.HMAC256(secret);
+	        String token = JWT.create()
+	                .withIssuer("quark-api")
+	                .withSubject(user.getUsername())
+	                .withClaim("firstName", user.getFirstName())
+	                .withClaim("role", user.getRole().toString())
+	                .withExpiresAt(generateExpirationDate())
+	                .sign(algorithm);
+
+	        return token;
+	    } catch (JWTCreationException exception) {
+	        throw new RuntimeException("Error while generating token", exception);
+	    }
 	}
+
 	
 	public String validateToken(String token) {
 		try {
