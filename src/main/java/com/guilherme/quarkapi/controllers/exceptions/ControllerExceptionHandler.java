@@ -7,6 +7,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import com.guilherme.quarkapi.services.exceptions.AlreadyRegisteredUserException;
+import com.guilherme.quarkapi.services.exceptions.DataIntegrityViolationException;
 import com.guilherme.quarkapi.services.exceptions.ObjectNotFoundException;
 import com.guilherme.quarkapi.services.exceptions.TaskCompletedException;
 
@@ -33,6 +35,18 @@ public class ControllerExceptionHandler {
 	
 	@ExceptionHandler(TaskCompletedException.class)
 	public ResponseEntity<StandardError> taskCompletedException(TaskCompletedException e, ServletRequest request) {
+		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), e.getMessage());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+	}
+	
+	@ExceptionHandler(AlreadyRegisteredUserException.class)
+	public ResponseEntity<StandardError> alreadyRegisteredUserException(AlreadyRegisteredUserException e, ServletRequest request) {
+		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), e.getMessage());
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+	}
+	
+	@ExceptionHandler(DataIntegrityViolationException.class)
+	public ResponseEntity<StandardError> dataIntegrityViolationException(DataIntegrityViolationException e, ServletRequest request) {
 		StandardError error = new StandardError(System.currentTimeMillis(), HttpStatus.BAD_REQUEST.value(), e.getMessage());
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}

@@ -1,5 +1,7 @@
 package com.guilherme.quarkapi.services;
 
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -73,7 +75,7 @@ public class TaskService {
     }
 	
 	private TaskDTO toDTO(Task task) {
-		UserDTO userDto = new UserDTO(task.getUser().getId(), task.getUser().getFirstName(), task.getUser().getLastName());
+		UserDTO userDto = new UserDTO(task.getUser().getId(), task.getUser().getFirstName(), task.getUser().getLastName(), task.getUser().getUserName(), task.getUser().getRole());
 	    return new TaskDTO(task.getId(), task.getTitle(), task.getDescription(), task.getStatus(), task.getPriority(), task.getDeadline(), userDto);
 	}
 
@@ -92,5 +94,9 @@ public class TaskService {
 			throw new TaskCompletedException("Tarefa com o Id: " + id + " já consta como concluída.");
 		}
 		taskRepository.markAsComplete(task.getId());
+	}
+	
+	public List<Task> findByUserId(Long id) {
+		return taskRepository.findByUserId(id);
 	}
 }

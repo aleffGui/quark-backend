@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.guilherme.quarkapi.enums.UserRole;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -27,6 +28,7 @@ public class User implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Column(unique = true)
 	private String userName;
 	
 	private String firstName;
@@ -88,11 +90,21 @@ public class User implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
+	
 	public Long getId() {
 		return this.id;
 	}
+	
 	public String getFirstName() {
 		return firstName;
+	}
+	
+	public String getUserName() {
+		return userName;
+	}
+	
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 
 	public void setFirstName(String firstName) {
@@ -111,10 +123,11 @@ public class User implements UserDetails {
 		return role;
 	}
 	
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	public void setRole(UserRole role) {
 		this.role = role;
 	}
-
-	
-	
 }

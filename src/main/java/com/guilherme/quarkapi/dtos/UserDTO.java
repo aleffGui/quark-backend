@@ -1,20 +1,26 @@
 package com.guilherme.quarkapi.dtos;
 
+import com.guilherme.quarkapi.enums.UserRole;
+
 public class UserDTO {
 
 	private Long id;
-	private String name;
+	private String firstName;
 	private String lastName;
+	private String userName;
+	private UserRole role;
 	
 	public UserDTO() {
 		
 	}
 
-	public UserDTO(Long id, String name, String lastName) {
+	public UserDTO(Long id, String firstName, String lastName, String userName, UserRole role) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.firstName = firstName;
 		this.lastName = lastName;
+		this.role = role;
+		this.userName = userName;
 	}
 
 	public Long getId() {
@@ -25,12 +31,12 @@ public class UserDTO {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getLastName() {
@@ -39,6 +45,22 @@ public class UserDTO {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+
+	public UserRole getRole() {
+		return role;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public void setRole(UserRole role) {
+		this.role = role;
 	}
 	
 	
