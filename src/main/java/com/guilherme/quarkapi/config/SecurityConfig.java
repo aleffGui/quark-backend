@@ -28,6 +28,8 @@ public class SecurityConfig {
 				.authorizeHttpRequests(authorize -> authorize
 						.requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
 						.requestMatchers(HttpMethod.POST, "/users").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.PUT, "/users").hasRole("ADMIN")
+						.requestMatchers(HttpMethod.DELETE, "/users").hasRole("ADMIN")
 						.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 						.anyRequest().authenticated()
 				)
