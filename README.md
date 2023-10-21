@@ -6,32 +6,32 @@ Para logar como usuário admin, basta inserir os dados:
 Username: guilhermeferreira,
 Password: “123456”
 
-Para executar o projeto rode os seguintes comandos:
+## Configurações para instalação do projeto:
 
-1) Configuração do banco de dados:
-Instalar postgresql:
-https://www.postgresql.org/download/
+- Configuração do banco de dados:
+  - [Instalar postgresql](https://www.postgresql.org/download/)
+  - Criar uma base de dados com o nome: quarkapp
 
+- Clonar o projeto, utilizando o comando abaixo
+```
 Criar uma base de dados com o nome: quarkapp
+```
 
-2) Clonar o projeto:
-Git clone https://github.com/aleffGui/quark-backend.git
+- [Instalar a versão 11 do Java](https://adoptium.net/temurin/releases/?version=11)
 
-3) Instalar a versão 11 do Java:
-
-https://adoptium.net/temurin/releases/?version=11
-
-3.1) Verificar a versão do java:
+- Verificar a versão do java, utilizando o comando abaixo:
+```
 java -version
+```
+- [Instalar o maven](https://maven.apache.org/download.cgi)
 
-3.2) Instalar o maven:
+- Após concluir as instalações, abrir o terminal e navegar até a pasta raíz do projeto
 
-https://maven.apache.org/download.cgi
-
-3.3) Após concluir as instalações, abrir o terminal e navegar até a pasta raíz do projeto
-
-3.4) Rodar o comando:
+-  Na pasta raíz do projeto, executar o comando abaixo:
+```
 mvn clean install
-
-3.5) Por fim, executar o comando:
+```
+- Por fim, executar o comando abaixo:
+```
 mvn spring-boot:run
+```
