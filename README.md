@@ -1,6 +1,18 @@
-# quark-backend
+## Descrição da API de Gerenciamento de Tarefas
 
-Essa API consiste em gerenciar tarefas, onde o usuário pode cadastrar, editar e excluir tarefas. Existem dois tipos de usuários: ADMIN e USER. O ADMIN, além do gerenciamento das tarefas, também pode gerenciar os usuários do sistema. Também foi implementado autenticação jwt com spring Security para proteger as requisições.
+A API em questão é um sistema de gerenciamento de tarefas projetado para permitir que os usuários cadastrem, editem, excluam e marquem como concluídas as tarefas. Além disso, a aplicação oferece funcionalidades de filtragem para facilitar a busca por tarefas específicas.
+
+### Tipos de Usuários
+
+A aplicação suporta dois tipos de usuários:
+
+- **ADMIN:** Os administradores têm amplos poderes, incluindo o gerenciamento de tarefas e a capacidade de gerenciar os próprios usuários do sistema.
+
+- **USER:** Os usuários comuns têm a capacidade de criar, editar e gerenciar as tarefas.
+
+### Segurança e Autenticação
+
+Para garantir a segurança e a autenticação, a API implementa autenticação JWT (JSON Web Tokens) usando o Spring Security. Isso ajuda a proteger as requisições e garante que apenas os usuários autenticados tenham acesso às funcionalidades do sistema.
 
 Para logar como usuário admin, basta inserir os dados:
 Username: guilhermeferreira
