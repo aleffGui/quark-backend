@@ -10,12 +10,14 @@ Password: “123456”
 
 - Configuração do banco de dados:
   - [Instalar postgresql](https://www.postgresql.org/download/)
+  - Iniciar o servidor do postgres
   - Criar uma base de dados com o nome: quarkapp
 
 - Clonar o projeto, utilizando o comando abaixo
 ```
-Criar uma base de dados com o nome: quarkapp
+git clone https://github.com/aleffGui/quark-backend.git
 ```
+- Criar uma base de dados com o nome: quarkapp
 
 - [Instalar a versão 11 do Java](https://adoptium.net/temurin/releases/?version=11)
 
