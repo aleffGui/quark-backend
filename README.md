@@ -3,8 +3,8 @@
 Essa API consiste em gerenciar tarefas, onde o usuário pode cadastrar, editar e excluir tarefas. Existem dois tipos de usuários: ADMIN e USER. O ADMIN, além do gerenciamento das tarefas, também pode gerenciar os usuários do sistema. Também foi implementado autenticação jwt com spring Security para proteger as requisições.
 
 Para logar como usuário admin, basta inserir os dados:
-Username: guilhermeferreira,
-Password: “123456”
+Username: guilhermeferreira
+Password: 123456
 
 ## Configurações para instalação do projeto:
 
