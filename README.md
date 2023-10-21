@@ -17,7 +17,6 @@ Password: “123456”
 ```
 git clone https://github.com/aleffGui/quark-backend.git
 ```
-- Criar uma base de dados com o nome: quarkapp
 
 - [Instalar a versão 11 do Java](https://adoptium.net/temurin/releases/?version=11)
 
