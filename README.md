@@ -15,7 +15,9 @@ A aplicação suporta dois tipos de usuários:
 Para garantir a segurança e a autenticação, a API implementa autenticação JWT (JSON Web Tokens) usando o Spring Security. Isso ajuda a proteger as requisições e garante que apenas os usuários autenticados tenham acesso às funcionalidades do sistema.
 
 Para logar como usuário admin, basta inserir os dados:
+
 Username: guilhermeferreira
+
 Password: 123456
 
 ## Configurações para instalação do projeto:
