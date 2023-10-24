@@ -32,7 +32,7 @@ Password: 123456
 git clone https://github.com/aleffGui/quark-backend.git
 ```
 
-- [Instalar a versão 11 do Java](https://adoptium.net/temurin/releases/?version=11)
+- [Instalar a versão 17 do Java](https://adoptium.net/temurin/releases/?version=17)
 
 - Verificar a versão do java, utilizando o comando abaixo:
 ```
