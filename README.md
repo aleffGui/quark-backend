@@ -20,7 +20,9 @@ Username: guilhermeferreira
 
 Password: 123456
 
-## Configurações para instalação do projeto:
+## Para acessar o projeto completo no ar, [clique aqui](https://taskmanager-cf361.web.app/)
+
+## Configurações para instalação do projeto localmente:
 
 - Configuração do banco de dados:
   - [Instalar postgresql](https://www.postgresql.org/download/)
