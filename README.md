@@ -20,7 +20,7 @@ Username: guilhermeferreira
 
 Password: 123456
 
-## Para acessar o projeto completo no ar, [clique aqui](https://taskmanager-cf361.web.app/)
+## Para acessar o projeto completo, [clique aqui](https://taskmanager-cf361.web.app/)
 
 ## Configurações para instalação do projeto localmente:
 
