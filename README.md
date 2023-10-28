@@ -1,6 +1,5 @@
 # Backend do TaskManager
 ## Para acessar o projeto completo, [clique aqui](https://quark-taskmanager.netlify.app)
-  - OBS: Pode haver um tempo de espera de até 5 minutos após realizar o login, pois o deploy da API foi realizado no Render e está sendo utilizado o plano gratuito que desliga o servidor após 15 minutos de inatividade da API. Passado os 15 minutos, o servidor só iniciará novamente após uma nova requisição!
 ## Descrição da API de Gerenciamento de Tarefas
 
 A API em questão é um sistema de gerenciamento de tarefas projetado para permitir que os usuários cadastrem, editem, excluam e marquem como concluídas as tarefas. Além disso, a aplicação oferece funcionalidades de filtragem para facilitar a busca por tarefas específicas.
