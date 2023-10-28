@@ -19,7 +19,6 @@ public class PingScheduler {
     public PingScheduler(RestTemplate restTemplate, @Value("${api.url}") String apiUrl) {
         this.restTemplate = restTemplate;
         this.apiUrl = apiUrl + prefix;
-        System.out.println(this.apiUrl);
     }
 
     @Scheduled(fixedRate = 600000)
