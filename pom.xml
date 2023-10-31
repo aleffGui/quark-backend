@@ -55,7 +55,11 @@
 		<dependency>
     		<groupId>org.slf4j</groupId>
    			<artifactId>slf4j-api</artifactId>
-		</dependency>	
+		</dependency>
+		<dependency>
+    		<groupId>org.flywaydb</groupId>
+    		<artifactId>flyway-core</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
