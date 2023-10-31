@@ -1,4 +1,5 @@
-INSERT INTO task (title, description, priority, user_id, deadline, status) VALUES
+INSERT INTO task (title, description, priority, user_id, deadline, status) 
+VALUES
 ('Reunião de Equipe', 'Preparar pauta para a reunião semanal', 'LOW', 1, '2023-10-30', true),
 ('Relatório de Vendas', 'Gerar relatório de vendas do mês passado', 'MEDIUM', 5, '2023-11-05', false),
 ('Atualização do Site', 'Atualizar o conteúdo do site principal', 'HIGH', 6, '2023-11-10', true),
@@ -34,7 +35,7 @@ INSERT INTO task (title, description, priority, user_id, deadline, status) VALUE
 ('Manutenção de Equipamentos', 'Realizar manutenção dos equipamentos', 'HIGH', 9, '2024-04-10', true),
 ('Análise de Dados', 'Realizar análise de dados de mercado', 'LOW', 10, '2024-04-15', false),
 ('Treinamento em Atendimento', 'Treinamento em atendimento ao cliente', 'MEDIUM', 11, '2024-04-20', true),
-('Desenvolvimento de Aplicativo', 'Desenvolver novo aplicativo móvel', 'HIGH', 12, '2024-04-25', false)
+('Desenvolvimento de Aplicativo', 'Desenvolver novo aplicativo móvel', 'HIGH', 12, '2024-04-25', false),
 ('Treinamento de Novos Funcionários', 'Realizar treinamento para novos funcionários', 'MEDIUM', 8, '2024-05-20', true),
 ('Pesquisa de Satisfação do Cliente', 'Realizar pesquisa de satisfação dos clientes', 'HIGH', 9, '2024-05-25', false),
 ('Desenvolvimento de Recurso 2', 'Desenvolver novo recurso para o aplicativo', 'LOW', 10, '2024-05-30', true),
