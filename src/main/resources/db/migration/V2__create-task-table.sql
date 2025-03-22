@@ -6,5 +6,5 @@ CREATE TABLE task (
     deadline TIMESTAMP NOT NULL,
     status BOOLEAN NOT NULL,
     userId BIGINT,
-    CONSTRAINT fk_user FOREIGN KEY (userId) REFERENCES user(id)
+    CONSTRAINT fk_user FOREIGN KEY (userId) REFERENCES users(id)
 );
