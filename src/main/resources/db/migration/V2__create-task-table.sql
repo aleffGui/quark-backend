@@ -1,5 +1,5 @@
 CREATE TABLE task (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    id BIGSERIAL PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
     description TEXT,
     priority VARCHAR(255) NOT NULL,
