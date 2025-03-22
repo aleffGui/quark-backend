@@ -1,8 +1,8 @@
 package com.guilherme.quarkapi.enums;
 
 public enum UserRole {
-	ADMIN("Usuario"),
-	USER("Administrador");
+	USER("Usuario"),
+	ADMIN("Administrador");
 	
 	private String role;
 	

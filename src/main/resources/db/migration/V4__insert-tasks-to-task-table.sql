@@ -1,4 +1,4 @@
-INSERT INTO task (title, description, priority, user_id, deadline, status) 
+INSERT INTO task (title, description, priority, userId, deadline, status)
 VALUES
 ('Reunião de Equipe', 'Preparar pauta para a reunião semanal', 'LOW', 1, '2023-10-30', true),
 ('Relatório de Vendas', 'Gerar relatório de vendas do mês passado', 'MEDIUM', 5, '2023-11-05', false),
