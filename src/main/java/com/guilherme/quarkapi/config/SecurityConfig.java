@@ -33,7 +33,7 @@ public class SecurityConfig {
 						.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 						.anyRequest().authenticated()
 				)
-				.addFilterBefore(securityFilterConfig, UsernamePasswordAuthenticationFilter.class)
+				//.addFilterBefore(securityFilterConfig, UsernamePasswordAuthenticationFilter.class)
 				.build();			
     }
 	
