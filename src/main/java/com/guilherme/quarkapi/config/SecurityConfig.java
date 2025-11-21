@@ -17,31 +17,31 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	
+
 	@Autowired
-	SecurityFilterConfig securityFilterConfig;
+	private SecurityFilterConfig securityFilterConfig;
+
 	@Bean
-    SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
+	SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
 		return httpSecurity
 				.csrf(csrf -> csrf.disable())
-				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.sessionManagement(session ->
+						session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 				.authorizeHttpRequests(authorize -> authorize
 						.requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
-						.requestMatchers(HttpMethod.POST, "/**").permitAll()
-						.requestMatchers(HttpMethod.PUT, "/**").permitAll()
-						.requestMatchers(HttpMethod.DELETE, "/**").permitAll()
-						.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+						.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // CORS
 						.anyRequest().authenticated()
 				)
-				//.addFilterBefore(securityFilterConfig, UsernamePasswordAuthenticationFilter.class)
-				.build();			
-    }
-	
+				.addFilterBefore(securityFilterConfig, UsernamePasswordAuthenticationFilter.class)
+				.build();
+	}
+
 	@Bean
-	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+	AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+			throws Exception {
 		return authenticationConfiguration.getAuthenticationManager();
 	}
-	
+
 	@Bean
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();

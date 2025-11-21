@@ -21,31 +21,47 @@ import jakarta.servlet.http.HttpServletResponse;
 public class SecurityFilterConfig extends OncePerRequestFilter {
 
 	@Autowired
-	TokenService tokenService;
-	
+	private TokenService tokenService;
+
 	@Autowired
-	UserRepository userRepository;
-	
+	private UserRepository userRepository;
+
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
-		var token = this.recoverToken(request);
-		if(token != null) {
-			var userName = tokenService.validateToken(token);
-			UserDetails user = userRepository.findByUserName(userName);
-			
-			if(user != null) {
-				var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-				SecurityContextHolder.getContext().setAuthentication(authentication);
+
+		if (request.getServletPath().equals("/auth/login")) {
+			filterChain.doFilter(request, response);
+			return;
+		}
+
+		String token = recoverToken(request);
+
+		if (token != null) {
+			try {
+				String userName = tokenService.validateToken(token);
+				UserDetails user = userRepository.findByUserName(userName);
+
+				if (user != null) {
+					UsernamePasswordAuthenticationToken authentication =
+							new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+
+					SecurityContextHolder.getContext().setAuthentication(authentication);
+				}
+
+			} catch (Exception e) {
+				SecurityContextHolder.clearContext();
 			}
 		}
+
 		filterChain.doFilter(request, response);
 	}
-	
-	private String recoverToken(HttpServletRequest request) {
-		var authHeader = request.getHeader("Authorization");
-		if(authHeader == null) return null;
-		return authHeader.replace("Bearer ", "");
-	}
 
+	private String recoverToken(HttpServletRequest request) {
+		String authHeader = request.getHeader("Authorization");
+		if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+			return null;
+		}
+		return authHeader.replace("Bearer ", "").trim();
+	}
 }
