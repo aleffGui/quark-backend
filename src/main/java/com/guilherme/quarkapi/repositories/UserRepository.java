@@ -1,6 +1,7 @@
 package com.guilherme.quarkapi.repositories;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
@@ -13,7 +14,7 @@ import com.guilherme.quarkapi.models.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long>, JpaSpecificationExecutor<User> {
 
-	public UserDetails findByUserName(String userName);
+	public Optional<User> findByUserName(String userName);
 	
 	public boolean existsByUserName(String userName);
 	

@@ -2,10 +2,11 @@ package com.guilherme.quarkapi.config;
 
 import java.io.IOException;
 
+import com.guilherme.quarkapi.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -40,7 +41,7 @@ public class SecurityFilterConfig extends OncePerRequestFilter {
 		if (token != null) {
 			try {
 				String userName = tokenService.validateToken(token);
-				UserDetails user = userRepository.findByUserName(userName);
+				User user = userRepository.findByUserName(userName).orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
 
 				if (user != null) {
 					UsernamePasswordAuthenticationToken authentication =
