@@ -28,11 +28,13 @@ public class User implements UserDetails {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(unique = true)
+	@Column(unique = true, name="username")
 	private String userName;
-	
+
+	@Column(name = "firstname")
 	private String firstName;
-	
+
+	@Column(name="lastname")
 	private String lastName;
 	
 	private String password;
